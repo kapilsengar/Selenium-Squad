@@ -10,29 +10,59 @@ A Python-based UI test automation framework for the [DemoShop](https://demowebsh
 demoshop/
 |
 ├── features/
+|   ├── add_to_cart.feature
+│   ├── address_management.feature
+│   ├── billing_address.feature
+│   ├── contact_us.feature
+│   ├── invalid_login.feature
 |   ├── login.feature
-│   ├── search.feature
-│   ├── cart.feature
-│   ├── checkout.feature
-│   ├── order.feature
-|   ├── shipping_address.feature
-│   └── api.feature  
+|   ├── logout.feature
+│   ├── order_confirmation.feature
+│   ├── payment_method.feature
+│   ├── product_details.feature
+│   ├── product_sorting.feature
+|   ├── register.feature
+|   ├── remove_from_cart.feature
+│   ├── search_product.feature
+│   ├── shipping_address.feature
+│   └── shipping_method.feature  
 |         
 ├── pages/        
-|   ├── base_page.py
-│   ├── login_page.py
-│   ├── home_page.py
-│   ├── product_page.py
+|   ├── address_page.py
+│   ├── billing_address_page.py
 │   ├── cart_page.py
-│   ├── checkout_page.py
-│   └── order_page.py
+│   ├── contact_us_page.py
+│   ├── invalid_login_page.py
+│   ├── login_page.py
+|   ├── logout_page.py
+│   ├── login_page.py
+│   ├── order_confirmation_page.py
+│   ├── payment_method_page.py
+│   ├── product_details_page.py
+|   ├── product_sorting_page.py
+│   ├── register_page.py
+│   ├── remove_cart_page.py
+│   ├── search_page.py
+│   ├── shipping_address_page.py
+│   └── shipping_method_page.py
 |
 ├── step_definitions/ 
-|   ├── login_steps.py
-│   ├── search_steps.py
-│   ├── cart_steps.py
-│   ├── checkout_steps.py
-│   └── api_steps.py
+|   ├── test_address_steps.py
+│   ├── test_billing_address_steps.py
+│   ├── test_cart_steps.py
+│   ├── test_contact_us_steps.py
+|   ├── test_invalid_login_steps.py
+│   ├── test_login_steps.py
+│   ├── test_logout_steps.py
+│   ├── test_order_confirmation_steps.py
+|   ├── test_payment_method_steps.py
+│   ├── test_product_details_steps.py
+│   ├── test_product_sorting_steps.py
+│   ├── test_register_steps.py
+|   ├── test_remove_cart_steps.py
+│   ├── test_search_steps.py
+│   ├── test_shipping_address_steps.py
+│   └── test_shipping_method_steps.py
 |
 ├── conftest.py          
 ├── pytest.ini           
