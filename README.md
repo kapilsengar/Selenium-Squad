@@ -125,6 +125,3 @@ Pull requests are welcome! Please open an issue first to discuss any major chang
 
 ---
 
-## 📄 License
-
-This project is open source. Feel free to use and adapt it for your own learning or projects.
