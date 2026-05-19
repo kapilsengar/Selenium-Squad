@@ -4,8 +4,8 @@ from pages.cart_page import CartPage
 
 scenarios("../features/cart.feature")
 
-
-@given("user opens homepage")
+#user open homepage
+@given("user open homepage")
 def open_homepage(browser):
     cart = CartPage(browser)
     cart.open_homepage()

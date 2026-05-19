@@ -31,7 +31,7 @@ class CartPage:
 
     def open_homepage(self):
         self.driver.get(
-            "https://demowebshop.tricentis.com/"
+            "https://demowebshop.tricentis.com/"  #home page url
         )
 
     def add_product_to_cart(self):
