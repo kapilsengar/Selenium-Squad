@@ -1,4 +1,4 @@
-# Logout Steps 
+# Logout Steps
 from pytest_bdd import scenarios, given, when, then
 from pages.logout_page import LogoutPage
 

@@ -1,4 +1,4 @@
-# Logout Feature
+# Logout Feature 
 Feature: Logout Functionality
 
   Scenario: Successful logout
