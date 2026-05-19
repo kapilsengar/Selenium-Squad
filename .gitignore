@@ -1,0 +1,29 @@
+# Virtual Environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pytest cache
+.pytest_cache/
+
+# Reports
+report.html
+reports/
+allure-report/
+allure-results/
+
+# Logs
+*.log
+
+# Mac system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
