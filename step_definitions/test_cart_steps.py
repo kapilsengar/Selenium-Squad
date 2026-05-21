@@ -2,7 +2,7 @@ from pytest_bdd import scenarios, given, when, then
 from pages.cart_page import CartPage
 
 # Load feature file
-scenarios("../features/add_to_cart.feature")
+scenarios("../features/cart.feature")
 
 
 # Open homepage
