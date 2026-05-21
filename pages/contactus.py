@@ -1,71 +1,50 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
 
-class ContactUsPage:
+class ContactUsPage(BasePage):
+    # Contact page endpoint
+    CONTACT_ENDPOINT = "/contactus"
 
-    ENQUIRY = (
-        By.ID,
-        "Enquiry"
-    )
+    # Web elements
+    FULL_NAME = (By.ID, "FullName")
 
-    SUBMIT_BUTTON = (
-        By.NAME,
-        "send-email"
-    )
+    EMAIL = (By.ID, "Email")
 
-    SUCCESS_MESSAGE = (
-        By.CLASS_NAME,
-        "result"
-    )
+    ENQUIRY = (By.ID, "Enquiry")
+
+    SUBMIT_BUTTON = (By.NAME, "send-email")
+
+    SUCCESS_MESSAGE = (By.CLASS_NAME, "result")
 
     def __init__(self, driver):
+        super().__init__(driver)
 
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
-
+    # Open contact page
     def open_contact_page(self):
+        self.open_url(self.CONTACT_ENDPOINT)
 
-        self.driver.get(
-            "https://demowebshop.tricentis.com/contactus"
-        )
-
+    # Submit contact form
     def submit_contact_form(self):
-
-        email = self.wait.until(
-            EC.presence_of_element_located(
-                (
-                    By.ID,
-                    "FullName"
-                )
-            )
+        self.wait.until(EC.visibility_of_element_located(self.FULL_NAME)).send_keys(
+            "Aditya Raj"
         )
 
-        email.send_keys("Aditya Raj")
+        self.driver.find_element(*self.EMAIL).send_keys("ram444@gmail.com")
 
-        self.driver.find_element(
-            By.ID,
-            "Email"
-        ).send_keys("ram444@gmail.com")
-
-        self.driver.find_element(
-            *self.ENQUIRY
-        ).send_keys(
+        self.driver.find_element(*self.ENQUIRY).send_keys(
             "This is automation testing enquiry"
         )
 
-        submit = self.wait.until(
-            EC.presence_of_element_located(
-                self.SUBMIT_BUTTON
-            )
-        )
+        submit = self.wait.until(EC.element_to_be_clickable(self.SUBMIT_BUTTON))
 
-        self.driver.execute_script(
-            "arguments[0].click();",
-            submit
-        )
+        self.driver.execute_script("arguments[0].click();", submit)
 
+    # Verify successful submission
     def verify_contact_submission(self):
+        success = self.wait.until(
+            EC.visibility_of_element_located(self.SUCCESS_MESSAGE)
+        )
 
-        return "contactus" in self.driver.current_url
+        return success.is_displayed()
