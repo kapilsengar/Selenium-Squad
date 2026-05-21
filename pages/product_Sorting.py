@@ -1,75 +1,44 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
+from pages.base_page import BasePage
 
 
-class ProductSortingPage:
+class ProductSortingPage(BasePage):
+    # Category page endpoint
+    CATEGORY_ENDPOINT = "/apparel-shoes"
 
-    SORT_DROPDOWN = (
-        By.ID,
-        "products-orderby"
-    )
+    # Web elements
+    SORT_DROPDOWN = (By.ID, "products-orderby")
 
-    PRODUCT_PRICES = (
-        By.CLASS_NAME,
-        "price.actual-price"
-    )
+    PRODUCT_PRICES = (By.CSS_SELECTOR, "span.price.actual-price")
 
     def __init__(self, driver):
+        super().__init__(driver)
 
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 15)
-
+    # Open category page
     def open_category_page(self):
+        self.open_url(self.CATEGORY_ENDPOINT)
 
-        self.driver.get(
-            "https://demowebshop.tricentis.com/apparel-shoes"
-        )
-
+    # Sort products by price
     def sort_products(self):
-
         dropdown = Select(
-            self.wait.until(
-                EC.presence_of_element_located(
-                    self.SORT_DROPDOWN
-                )
-            )
+            self.wait.until(EC.presence_of_element_located(self.SORT_DROPDOWN))
         )
 
-        dropdown.select_by_visible_text(
-            "Price: Low to High"
-        )
+        dropdown.select_by_visible_text("Price: Low to High")
 
+    # Verify product sorting
     def verify_sorting(self):
+        self.wait.until(EC.presence_of_all_elements_located(self.PRODUCT_PRICES))
 
-        self.wait.until(
-            EC.presence_of_all_elements_located(
-                (
-                    By.CSS_SELECTOR,
-                    "span.price.actual-price"
-                )
-            )
-        )
-
-        prices = self.driver.find_elements(
-            By.CSS_SELECTOR,
-            "span.price.actual-price"
-        )
+        prices = self.driver.find_elements(*self.PRODUCT_PRICES)
 
         price_list = []
 
         for price in prices:
+            value = price.text.replace("$", "")
 
-            value = price.text.replace(
-                "$",
-                ""
-            )
+            price_list.append(float(value))
 
-            price_list.append(
-                float(value)
-            )
-
-        sorted_prices = sorted(price_list)
-
-        return price_list == sorted_prices
+        return price_list == sorted(price_list)
