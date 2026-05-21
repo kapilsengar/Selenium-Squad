@@ -6,7 +6,7 @@ scenarios("../features/cart.feature")
 
 
 # Open homepage
-@given("user opens homepage")
+@given("user open homepage")
 def open_homepage(browser):
     browser.cart_page = CartPage(browser)
     browser.cart_page.open_homepage()
