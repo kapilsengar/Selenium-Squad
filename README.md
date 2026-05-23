@@ -116,7 +116,7 @@ pytest
 **4. Run a specific feature**
 
 ```bash
-pytest features/your_feature.feature
+pytest -v step_definitions/test_file.py
 ```
 
 **5. Run with verbose output**
